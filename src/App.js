@@ -1,18 +1,18 @@
 import React from "react";
 import "./styles/App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from "./components/dashboard/Dashboard";
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: "dark"
   },
-  overrides:{
+  overrides: {
     MuiPaper: {
-      root:{
-        backgroundColor: "#282828",
+      root: {
+        backgroundColor: "#191919"
       }
-    }
+    },
   }
 });
 
