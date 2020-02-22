@@ -118,7 +118,7 @@ const NavBar = () => {
             aria-label="navigation tabs"
             centered
           >
-            <Tab label="Test Widget" />
+            <Tab label="Current Set" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
           </Tabs>
