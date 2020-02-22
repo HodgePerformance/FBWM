@@ -7,10 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import WidgetContainer from "./WidgetContainer";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+
+// Widgets
 import TestWidget from '../widgets/TestWidget';
+import CurrentSet from '../widgets/CurrentSet';
 
 const drawerWidth = 240;
-let widgets = [{id:'test_widget', widget: TestWidget}];
+let widgets = [{id:'current_set', widget: CurrentSet}];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,7 +73,8 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   content: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingTop: theme.spacing(8)
   },
   title: {
     fontFamily: "Segoe Script",
@@ -95,10 +99,10 @@ const NavBar = () => {
   const handleChange = (event, newValue) => {
     switch(newValue){
       case 0:
-        widgets = [{id:'test_widget', widget: TestWidget}];
+        widgets = [{id: 'current_set', widget: CurrentSet}];
         break;
       default:
-        widgets = [{id:'test_widget', widget: TestWidget}];
+        widgets = [{id: 'test_widget', widget: TestWidget}];
         break;
     }
     setValue(newValue);
