@@ -7,7 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import WidgetContainer from "./WidgetContainer";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import TestWidget from '../widgets/TestWidget';
+
 const drawerWidth = 240;
+let widgets = [{id:'test_widget', widget: TestWidget}];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -90,6 +93,14 @@ const NavBar = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
+    switch(newValue){
+      case 0:
+        widgets = [{id:'test_widget', widget: TestWidget}];
+        break;
+      default:
+        widgets = [{id:'test_widget', widget: TestWidget}];
+        break;
+    }
     setValue(newValue);
   };
 
@@ -98,17 +109,6 @@ const NavBar = () => {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          {/* <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open
-            })}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             Music Manager
           </Typography>
@@ -124,31 +124,8 @@ const NavBar = () => {
           </Tabs>
         </Toolbar>
       </AppBar>
-      {/* <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })
-        }}
-      >
-        <Toolbar variant="dense" className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </Toolbar>
-      </Drawer> */}
       <main className={classes.content}>
-        <WidgetContainer />
+        <WidgetContainer widgets={widgets}/>
       </main>
     </div>
   );

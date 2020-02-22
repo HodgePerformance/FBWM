@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
-import TestWidget from "../widgets/TestWidget";
-
-const widgets = [];
 
 class WidgetContainer extends Component {
   render() {
+    const { widgets } = this.props;
     return (
       <Grid container spacing={3}>
         {widgets.map(widget => (
