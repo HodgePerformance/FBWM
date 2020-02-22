@@ -1,24 +1,25 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
-  Button,
   Card,
   CardContent,
   CardMedia,
-  withStyles
+  IconButton,
+  Link,
+  Grid
 } from "@material-ui/core";
 // Icons
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
 // Images
 import img from "../images/blessed_be_your_name.jpg";
+import youtubeIcon from "../images/youtube.png";
+import ulttabsIcon from "../images/ulttabs.png";
+import pdfIcon from "../images/pdf.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    cursor: "pointer"
   },
   details: {
     display: "flex",
@@ -36,31 +37,68 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1)
   },
-  playIcon: {
-    height: 38,
-    width: 38
+  info: {
+    padding: theme.spacing(1),
+    paddingBottom: 0
+  },
+  icon: {
+    height: theme.spacing(5),
+    width: theme.spacing(5)
   }
 }));
 
 export default function Song(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const preventDefault = event => event.preventDefault();
   const { song } = props;
+
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography variant="overline">{song.title}</Typography>
-          <Typography variant="subtitle2" color="textSecondary">
-            {song.artist}
-          </Typography>
-        </CardContent>
+    <React.Fragment>
+      <Card className={classes.root}>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography variant="overline">{song.title}</Typography>
+            <Typography variant="subtitle2" color="textSecondary">
+              {song.artist}
+            </Typography>
+          </CardContent>
+        </div>
+        <CardMedia
+          className={classes.cover}
+          image={img}
+          title="Live from space album cover"
+        />
+      </Card>
+      <div className={classes.info}>
+        <Grid container justify="center" spacing={1}>
+          <Grid item>
+            <a
+              href={song.youtube}
+              target="blank"
+            >
+              <img src={youtubeIcon} className={classes.icon} />
+            </a>
+          </Grid>
+          <Grid item>
+            <a
+              href={song.ultTabs}
+              target="blank"
+            >
+              <img src={ulttabsIcon} className={classes.icon} />
+            </a>
+          </Grid>
+          <Grid item>
+            <a
+              href="/images/blessed-be-your-name-a.pdf"
+              target="blank"
+              download
+            >
+              <img src={pdfIcon} className={classes.icon} />
+            </a>
+          </Grid>
+        </Grid>
       </div>
-      <CardMedia
-        className={classes.cover}
-        image={img}
-        title="Live from space album cover"
-      />
-    </Card>
+    </React.Fragment>
   );
 }

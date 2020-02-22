@@ -15,7 +15,7 @@ import Song from "../Song";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   card: {
     backgroundColor: "#333333"

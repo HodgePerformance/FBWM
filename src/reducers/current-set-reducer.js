@@ -7,7 +7,9 @@ const initState = {
       artist: "Matt Redman",
       key: "A",
       plays: "0",
-      rating: "8"
+      rating: "8",
+      youtube: "https://www.youtube.com/watch?v=tTpTQ4kBLxA",
+      ultTabs: "https://tabs.ultimate-guitar.com/tab/matt-redman/blessed-be-your-name-chords-118781",
     },
     ambient_pad: true,
     lighting_color: "blue"
