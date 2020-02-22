@@ -1,11 +1,18 @@
 import React from "react";
-import logo from "./images/logo.svg";
 import "./styles/App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: "dark"
+  },
+  overrides: {
+    MuiPaper: {
+      root: {
+        backgroundColor: "#191919"
+      }
+    },
   }
 });
 
@@ -14,7 +21,7 @@ function App() {
     <MuiThemeProvider ovider theme={darkTheme}>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <Dashboard />
         </header>
       </div>
     </MuiThemeProvider>
