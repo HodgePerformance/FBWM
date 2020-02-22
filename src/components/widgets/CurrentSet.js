@@ -1,19 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, Grid, CardContent, List, ListItem, Typography } from "@material-ui/core";
+import {
+  Card,
+  Grid,
+  CardContent,
+  List,
+  ListItem,
+  Typography,
+  Divider
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
 import Song from "../Song";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
-  card:{
+  card: {
     backgroundColor: "#333333"
   },
-  song:{
-    right: 0,
+  song: {
+    right: 0
   },
   media: {
     height: 0,
@@ -33,11 +41,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: red[500]
   },
   content: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   songOrder: {
-    fontFamily: "Segoe Script",
-  },
+    fontFamily: "Segoe Script"
+  }
 }));
 
 const CurrentSet = props => {
@@ -47,30 +55,50 @@ const CurrentSet = props => {
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent>
-          <Grid container spacing={2} direction="row" className={classes.content}>
-            <Grid item xs={12} className={classes.song}>
+          <Grid
+            container
+            spacing={3}
+            direction="column"
+            className={classes.content}
+          >
+            <Grid item className={classes.song}>
+              <Typography>Welcome</Typography>
               <Song id="welcome" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Meet and Greet</Typography>
+              <Song id="meet_greet" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Main 1</Typography>
+              <Song id="main1" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Main 2</Typography>
+              <Song id="main2" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Main 3</Typography>
+              <Song id="main3" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Invitational</Typography>
+              <Song id="invitational" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Backup Invitational</Typography>
+              <Song id="backup_invitational" song={currentSet.welcome.song} />
             </Grid>
+            <Divider />
             <Grid item>
-              <Song id="welcome" song={currentSet.welcome.song} />
+              <Typography>Walk Out</Typography>
+              <Song id="walk_out" song={currentSet.welcome.song} />
             </Grid>
           </Grid>
         </CardContent>

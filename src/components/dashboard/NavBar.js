@@ -1,19 +1,32 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import {
+  AppBar,
+  CssBaseline,
+  Drawer,
+  Toolbar,
+  IconButton,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
 import WidgetContainer from "./WidgetContainer";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-
+// Icons
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import MenuIcon from "@material-ui/icons/Menu";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import FeaturedPlayListIcon from "@material-ui/icons/FeaturedPlayList";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 // Widgets
-import TestWidget from '../widgets/TestWidget';
-import CurrentSet from '../widgets/CurrentSet';
+import TestWidget from "../widgets/TestWidget";
+import CurrentSet from "../widgets/CurrentSet";
 
 const drawerWidth = 240;
-let widgets = [{id:'current_set', widget: CurrentSet}];
+let widgets = [{ id: "current_set", widget: CurrentSet }];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,8 +49,7 @@ const useStyles = makeStyles(theme => ({
     })
   },
   menuButton: {
-    marginRight: 36,
-    position: "absolute"
+    marginRight: 36
   },
   hide: {
     display: "none"
@@ -77,7 +89,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(8)
   },
   title: {
-    fontFamily: "Segoe Script",
     width: theme.spacing(30),
     marginRight: theme.spacing(15)
   },
@@ -89,47 +100,105 @@ const useStyles = makeStyles(theme => ({
     boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
     color: "white",
     fontSize: 12
-  }
+  },
+  drawerIcon: {}
 }));
 
 const NavBar = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event, newValue) => {
-    switch(newValue){
-      case 0:
-        widgets = [{id: 'current_set', widget: CurrentSet}];
+  const handleChange = newValue => {
+    switch (newValue) {
+      case "current_set":
+        widgets = [{ id: "current_set", widget: CurrentSet }];
+        break;
+      case "songs":
+        widgets = [{ id: "current_set", widget: TestWidget }];
         break;
       default:
-        widgets = [{id: 'test_widget', widget: TestWidget}];
+        widgets = [{ id: "test_widget", widget: TestWidget }];
         break;
     }
     setValue(newValue);
   };
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open
+        })}
+      >
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
             Music Manager
           </Typography>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="navigation tabs"
-            centered
-          >
-            <Tab label="Current Set" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
-          </Tabs>
         </Toolbar>
       </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open
+          })
+        }}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => handleChange("current_set")}>
+            <ListItemIcon className={classes.drawerIcon}>
+              <FeaturedPlayListIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Current Set"} />
+          </ListItem>
+          <ListItem button onClick={() => handleChange("songs")}>
+            <ListItemIcon className={classes.drawerIcon}>
+              <LibraryMusicIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Songs"} />
+          </ListItem>
+        </List>
+      </Drawer>
       <main className={classes.content}>
-        <WidgetContainer widgets={widgets}/>
+        <WidgetContainer widgets={widgets} />
       </main>
     </div>
   );
