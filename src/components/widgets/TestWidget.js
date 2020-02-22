@@ -6,7 +6,7 @@ class TestWidget extends Component {
     return (
       <Card>
         <CardContent>
-          <Typography>TEST</Typography>
+          <Typography>THIS IS A TEST WIDGET</Typography>
         </CardContent>
       </Card>
     );
