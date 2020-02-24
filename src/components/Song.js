@@ -1,13 +1,6 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Link,
-  Grid
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Card, CardContent, CardMedia, Grid } from "@material-ui/core";
 // Icons
 import Typography from "@material-ui/core/Typography";
 // Images
@@ -49,8 +42,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Song(props) {
   const classes = useStyles();
-  const theme = useTheme();
-  const preventDefault = event => event.preventDefault();
   const { song } = props;
 
   return (
@@ -73,19 +64,21 @@ export default function Song(props) {
       <div className={classes.info}>
         <Grid container justify="center" spacing={1}>
           <Grid item>
-            <a
-              href={song.youtube}
-              target="blank"
-            >
-              <img src={youtubeIcon} className={classes.icon} />
+            <a href={song.youtube} target="blank">
+              <img
+                src={youtubeIcon}
+                className={classes.icon}
+                alt="youtube_icon"
+              />
             </a>
           </Grid>
           <Grid item>
-            <a
-              href={song.ultTabs}
-              target="blank"
-            >
-              <img src={ulttabsIcon} className={classes.icon} />
+            <a href={song.ultTabs} target="blank">
+              <img
+                src={ulttabsIcon}
+                className={classes.icon}
+                alt="ultTabs_icon"
+              />
             </a>
           </Grid>
           <Grid item>
@@ -94,7 +87,7 @@ export default function Song(props) {
               target="blank"
               download
             >
-              <img src={pdfIcon} className={classes.icon} />
+              <img src={pdfIcon} className={classes.icon} alt="pdf_icon" />
             </a>
           </Grid>
         </Grid>

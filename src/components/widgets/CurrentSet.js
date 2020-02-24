@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
   Card,
   Grid,
   CardContent,
-  List,
-  ListItem,
   Typography,
   Divider
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
 import Song from "../Song";
+import { firestoreConnect } from "react-redux-firebase";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   card: {
     backgroundColor: "#333333"
@@ -108,9 +108,13 @@ const CurrentSet = props => {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     currentSet: state.currentSet
   };
 };
 
-export default connect(mapStateToProps)(CurrentSet);
+export default compose(
+  firestoreConnect(["current_set"]),
+  connect(mapStateToProps)
+)(CurrentSet);

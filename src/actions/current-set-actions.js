@@ -1,6 +1,10 @@
-import firebase from '../firebase';
-import * as types from './types';
+import * as types from "./types";
 
-export const fetchCurrentSet = () => async dispatch => {
-    console.log(firebase.firestore.collection("current_set").get());
+export const fetchCurrentSet = currentSet => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to db
+    const firestore = getFirestore();
+    console.log(firestore);
+    dispatch({ type: types.FETCH_CURRENT_SET, currentSet });
+  };
 };

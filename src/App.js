@@ -18,7 +18,7 @@ const darkTheme = createMuiTheme({
 
 function App() {
   return (
-    <MuiThemeProvider ovider theme={darkTheme}>
+    <MuiThemeProvider theme={darkTheme}>
       <div className="App">
         <header className="App-header">
           <Dashboard />
