@@ -30,10 +30,11 @@ let widgets = [{ id: "current_set", widget: CurrentSet }];
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   appBar: {
-    backgroundColor: "#191919",
+    backgroundColor: "#FBAB7E",
+    backgroundImage: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -86,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(8)
   },
   title: {
     width: theme.spacing(30),
